@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\DomainsController;
-Route::get('/', [DomainsController::class, 'index']);
+Route::get('/', [DomainsController::class, 'index'])->name('domains.index');
+Route::post('/domains', [DomainsController::class, 'store'])->name('domains.store');
+Route::get('/domains/{id}', [DomainsController::class, 'showDomain'])->name('domains.id');
+Route::get('/domains', [DomainsController::class, 'showAllDomains'])->name('domains.all');

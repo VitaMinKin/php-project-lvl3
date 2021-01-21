@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ URL::asset("css/app.css") }}">
     <link rel="stylesheet" href="{{ URL::asset("css/main.css") }}">
 
-    <title>Hello, world!</title>
+    <title>Page Analyzer!</title>
   </head>
   <body>
 
@@ -16,7 +16,7 @@
         @yield('content')
         @yield('footer')
 
+    <script type="text/javascript" src="{{ URL::asset("js/app.js") }}"></script>
+    <script type="text/javascript" src="{{ URL::asset("js/main.js") }}"></script>
   </body>
-  <script type="text/javascript" src="{{ URL::asset("js/app.js") }}"></script>
-  <script type="text/javascript" src="{{ URL::asset("js/main.js") }}"></script>
 </html>
