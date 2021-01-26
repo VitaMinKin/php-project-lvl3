@@ -39,13 +39,13 @@ class DomainsController extends Controller
             return redirect()->route('domains.index')->withInput();
         }
 
-        DB::table('domains')->insert([
+        $newDomainId = DB::table('domains')->insertGetId([
             'name' => $domainName,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
-        return redirect()->route('domains.id');
+        return redirect()->route('domains.id', ['id' => $newDomainId]);
     }
 
     public function showDomain($id)
