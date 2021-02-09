@@ -1,5 +1,4 @@
 @extends('layout')
-@extends('blocks.nav')
 
 @section('content')
 
@@ -24,19 +23,19 @@
             </tr>
         </thead>
 
-        @foreach ($domains as $domain)
+        @foreach ($urls as $url)
 		    <tr>
                 <td>
-                    {{ $domain->id }}
+                    {{ $url->id }}
                 </td>
                 <td>
-                    {{ $domain->name }}
+                    {{ $url->name }}
                 </td>
                 <td>
-                    {{ $domain->created_at }}
+                    {{ $url->created_at }}
                 </td>
                 <td>
-                    {{ $domain->updated_at }}
+                    {{ $url->updated_at }}
                 </td>
             </tr>
         @endforeach
@@ -45,7 +44,7 @@
 </div>
 
 <div class="container">
-    {{ $domains->onEachSide(2)->links() }}
+    {{ $urls->onEachSide(2)->links() }}
 </div>
 
 @endsection

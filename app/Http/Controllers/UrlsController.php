@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Log;
 
 
-class DomainsController extends Controller
+class UrlsController extends Controller
 {
-    public function index()
+    public function create()
     {
-        return view('domains.index');
+        return view('urls.create');
     }
 
     public function store(Request $request)
     {
-        $rawDomainName = $request->input('domain.name');
+        $rawDomainName = $request->input('url.name');
         $domainName = parse_url($rawDomainName, PHP_URL_HOST);
         $validationDatas = ['name' => $domainName];
 
-        $rules = [ //добавить unique для миграции в эту таблицу!
-            "name" => "required|unique:domains,name"
+        $rules = [ //добавить ограничение unique для миграции в эту таблицу!
+            "name" => "required|unique:urls,name"
         ];
 
         $validator = Validator::make($validationDatas, $rules);
@@ -36,30 +36,30 @@ class DomainsController extends Controller
                 flash($error)->error();
             }
 
-            return redirect()->route('domains.index')->withInput();
+            return redirect()->route('urls.index')->withInput();
         }
 
-        $newDomainId = DB::table('domains')->insertGetId([
+        $newDomainId = DB::table('urls')->insertGetId([
             'name' => $domainName,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
-        return redirect()->route('domains.id', ['id' => $newDomainId]);
+        return redirect()->route('urls.show', ['id' => $newDomainId]);
     }
 
-    public function showDomain($id)
+    public function show($id)
     {
-        $domain = DB::table('domains')->where('id', $id)->first();
+        $url = DB::table('urls')->where('id', $id)->first();
 
-        return view('domains.domain', ['domain' => $domain]);
+        return view('urls.show', ['url' => $url]);
     }
 
-    public function showAllDomains()
+    public function index()
     {
-        $domains = DB::table('domains')->paginate(10);
+        $urls = DB::table('urls')->paginate(10);
 
-        return view('domains.showAll', ['domains' => $domains]);
+        return view('urls.index', ['urls' => $urls]);
     }
 
 }

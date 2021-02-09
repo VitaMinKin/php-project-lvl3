@@ -1,5 +1,4 @@
 @extends('layout')
-@extends('blocks.nav')
 
 @section('content')
 
@@ -14,14 +13,13 @@
                         <h1 class='display-3'>Page Analyzer</h1>
                         <p class='lead'>Check web pages for free</p>
 
-                        <form class='d-flex justyfy-content-center' method="post" action="/domains">
+                        <form class='d-flex justyfy-content-center' method="post" action="/urls">
                             {{ csrf_field() }}
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name='domain[name]' placeholder="http://www.example.com" value="">
+                                <input type="text" class="form-control" name='url[name]' placeholder="http://www.example.com" value="">
                                 <button class="btn btn-primary ml-3 px-5 text-uppercase" type="submit">Check</button>
                             </div>
                         </form>
-
                 </div>
             </div>
         </div>
@@ -29,5 +27,3 @@
 </div>
 
 @endsection
-
-@extends('blocks.footer')
