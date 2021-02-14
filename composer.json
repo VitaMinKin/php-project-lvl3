@@ -72,6 +72,9 @@
         ],
         "post-update-cmd": [
             "@code-sniffer"
+        ],
+        "lint" : [
+            "vendor/bin/phpcs -s"
         ]
     }
 }
