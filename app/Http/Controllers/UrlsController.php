@@ -21,10 +21,11 @@ class UrlsController extends Controller
     public function store(Request $request)
     {
         $rawDomainName = $request->input('url.name');
+
         $domainName = parse_url($rawDomainName, PHP_URL_HOST);
         $validationDatas = ['name' => $domainName];
 
-        $rules = [ //добавить ограничение unique для миграции в эту таблицу!
+        $rules = [
             "name" => "required|unique:urls,name"
         ];
 
